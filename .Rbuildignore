@@ -8,3 +8,5 @@
 ^.devcontainer$
 ^man/figures$
 ^\.github$
+^doc$
+^Meta$
