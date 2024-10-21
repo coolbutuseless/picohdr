@@ -8,6 +8,14 @@
 \description{
 High Dynamic Range ('HDR') images support a large range in luminosity between the lightest and darkest regions of an image. To capture this range, data in 'HDR' images is often stored as floating point numbers and in formats that capture more data and channels than standard image types. This package supports reading and writing two types of 'HDR' images; 'PFM' (Portable Float Map) and 'OpenEXR' images. 'HDR' images can be converted to lower dynammic ranges (for viewing) using tone-mapping. A number of tone-mapping algorithms are included which are based on Reinhard's method from "Photographic tone reproduction for digital images" \doi{10.1145/566654.566575}.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/coolbutuseless/picohdr}
+  \item Report bugs at \url{https://github.com/coolbutuseless/picohdr/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Mike Cheng \email{mikefc@coolbutuseless.com} [copyright holder]
 

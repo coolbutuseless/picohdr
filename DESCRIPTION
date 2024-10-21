@@ -32,3 +32,5 @@ Copyright: The included images in the 'inst/image' directory were created
    by the package author (Mike Cheng) and are licensed under CC0 1.0.  
    See 'COPYRIGHTS' file for more details.
 VignetteBuilder: knitr
+URL: https://github.com/coolbutuseless/picohdr
+BugReports: https://github.com/coolbutuseless/picohdr/issues

@@ -27,8 +27,8 @@ adjusting array values are also included.
   - Parsing meta-information works on all image types (single-part,
     scanline, tiled, deep, and multi-part images)
 
-The package name is `**pico**hdr` as it only addresses a very small (but
-common) subset of the EXR image specification.
+The package prefix is `pico` as it only addresses a small subset of the
+EXR image specification.
 
 ## What’s in the box
 
@@ -60,15 +60,6 @@ common) subset of the EXR image specification.
     negatives.
   - `adj_shift_negatives_local()` same as the global method except the
     most negative value is found and adjusted on a per-channel basis.
-
-# ToDo before release
-
-- Add URL and BugReports URL
-- General refactor
-  - Put more information on the ‘info’ structure and pass that around
-    instead of lots of arguments and repeated calculations.
-- Doc pass
-- Smaller image to get package size under 5meg
 
 ## Installation
 
