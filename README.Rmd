@@ -1,0 +1,189 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = FALSE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+
+library(picohdr)
+```
+
+# picohdr
+
+<!-- badges: start -->
+![](https://img.shields.io/badge/cool-useless-green.svg)
+[![CRAN](https://www.r-pkg.org/badges/version/picohdr)](https://CRAN.R-project.org/package=picohdr)
+[![R-CMD-check](https://github.com/coolbutuseless/picoexr-dev/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/coolbutuseless/picoexr-dev/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
+`{picohdr}` is a package for reading and writing HDR (High Dynamic Range) images. 
+Supported image types are types [`PFM`](https://www.pauldebevec.com/Research/HDR/PFM/) 
+and [`EXR`](https://openexr.com/).  Tools for tone-mapping HDR images and adjusting array values are also included.
+
+* `PFM` *Portable Float Map* is a very simple 2D and 3D array serialization format
+  that is used to store floating point data for images.
+* `EXR` is a more comprehensive HDR image standard, but `picohdr` only supports a commonly occurring feature subset:
+    * Single-part scanline images only
+    * Compression modes: `NONE`, `ZIP`, `ZIPS` (`ZIPS` support is for read only)
+    * Parsing meta-information works on all image types (single-part, scanline, 
+      tiled, deep, and multi-part images)
+
+The package prefix is `pico` as it only addresses a small subset of the EXR image specification.
+
+## What's in the box
+
+* PFM support
+    * `read_pfm()`, `write_pfm()` for handling *Portable Float Map* (PFM) images
+* EXR support
+    * `read_exr()` for reading single-part scanline EXR images. Supports `NONE`, `ZIP` or `ZIPS`
+      compression modes. 
+    * `write_exr()` for writing single-part scanline EXR images. Supports `NONE` and `ZIP`
+      compression modes. 
+    * `exr_info()` return information about an EXR file.  Supports single-part, 
+      multi-part, tiled and deep images.
+* Tone mapping for converting from HDR to LDR (low dynamic range) raster image.
+  These functions work hard to shift array values into the range [0,1] with 
+  the aim to approximate the look of the HDR image in a more limited medium. 
+    * `tm_reinhard()`  
+    * `tm_reinhard_basic()`           
+    * `tm_reinhard_variant()` 
+* General array adjustments
+    * `adj_clamp()` clamp values outside the given limits
+    * `adj_gamma()` gamma correction
+    * `adj_infinite()` remove infinite values by setting them to the largest/smallest finite values
+    * `adj_rescale()` linearly rescale all values into the given range
+    * `adj_shift_negatives_global()` find the most negative value in the data and 
+       shift all values up by this amount so that there are no negatives.
+    * `adj_shift_negatives_local()` same as the global method except the most
+      negative value is found and adjusted on a per-channel basis.
+       
+
+## Installation
+
+You can install from [GitHub](https://github.com/coolbutuseless/picohdr) with:
+
+``` r
+# install.packages('remotes')
+remotes::install_github('coolbutuseless/picohdr')
+```
+
+## PFM
+
+Load and display a *Portable Float Map* (`PFM`) image.
+
+Apply tone-mapping to the image and adjust the gamma correction prior to display.
+
+```{r pfm1}
+filename <- "man/figures/memorial.pfm.bz2"
+im <- read_pfm(filename)
+dim(im)
+
+im |> 
+  tm_reinhard() |>
+  adj_gamma() |> 
+  plot()
+```
+
+
+
+## EXR 
+
+In this section
+
+* Load an EXR image
+* Show the names of the channels in this image
+* Plot the RGB channels (apply tone-mapping and gamma adjustment)
+* Plot some other channels in the image
+* Display the metainformation about an EXR image
+
+```{r exr1}
+library(picohdr)
+
+# EXR file of meta-information about the rendered scene
+filename <- system.file("image/rstats.exr", package = "picohdr") 
+
+# Load all images
+images <- read_exr(filename)
+dim(im)
+
+# Channel names. EXR format wants channels arranged alphabetically
+dimnames(images)[[3]]
+
+# Extract RGB channels. Tone-map. Adjust gamma.
+images[,,c('R', 'G', 'B')] |>
+  tm_reinhard() |>
+  adj_gamma() |>
+  plot()
+
+# Plot the albedo Green channel
+plot(images[, , 'Albedo.G'])
+```
+
+### Display a non-colour channel
+
+This file includes information about the surface derivative at each point in 
+the image in the `dzdx` channel.
+
+This value may be negative or positive, so we will map the values into the
+standard range [0, 1] so it can be visualised.
+
+```{r exr2}
+# Rescale the derivative channel to the range [0,1] and display
+images[,,'dzdx'] |>
+  adj_rescale(0, 1) |> 
+  plot()
+```
+
+### EXR metadata
+
+
+```{r}
+exr_info(filename)
+```
+
+
+
+
+```{r eval=FALSE, echo=FALSE}
+im <- images[,,c('R', 'G', 'B')]
+write_pfm(im, "inst/image/rstats.pfm.bz2")
+
+im <- images[,,'G']
+write_pfm(im, "inst/image/rstats-gray.pfm.bz2")
+```
+
+
+
+## EXR Implementation Notes
+
+The code for handling EXR images is mostly written in base R with the exception 
+of a core compression/decompression component which is written in C:
+
+The ZIP compression mode applies a predictor and de-interleaves bytes. The byte 
+predictor and interleaving can be in R but is 20x faster in C. 
+
+EXR support is for a subset of images which:
+
+* consist of a single-part scanline image.
+* use the `NONE`, `ZIP` or `ZIPS` compression
+
+This package **does not** support the following EXR features: 
+
+* multi-part images
+* deep images
+* tiled images
+
+If you would like support for these features please file an issue on GitHub.
+A link to a free/openly-licensed image containing your requested features would be 
+appreciated.
+
+
+
+
