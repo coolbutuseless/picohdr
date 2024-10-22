@@ -7,7 +7,7 @@
 
 ![](https://img.shields.io/badge/cool-useless-green.svg)
 [![CRAN](https://www.r-pkg.org/badges/version/picohdr)](https://CRAN.R-project.org/package=picohdr)
-[![R-CMD-check](https://github.com/coolbutuseless/picoexr-dev/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/coolbutuseless/picoexr-dev/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/coolbutuseless/picohdr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/coolbutuseless/picohdr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 `{picohdr}` is a package for reading and writing HDR (High Dynamic
@@ -225,10 +225,10 @@ exr_info(filename)
     #> [1] "ZIP"
     #> 
     #> $dataWindow
-    #> [1]   0   0 419 279
+    #> [1]   0   0 359 269
     #> 
     #> $displayWindow
-    #> [1]   0   0 419 279
+    #> [1]   0   0 359 269
     #> 
     #> $lineOrder
     #> [1] "increasing"
@@ -237,7 +237,7 @@ exr_info(filename)
     #> [1] 1
     #> 
     #> $renderTimeSeconds
-    #> [1] 55.13455
+    #> [1] 43.84048
     #> 
     #> $samplesPerPixel
     #> [1] 1024
@@ -256,15 +256,15 @@ exr_info(filename)
     #> [4,]  0.0000000  0.0000000  0.000000e+00  1.0000000
     #> 
     #> $worldToNDC
-    #>            [,1]       [,2]       [,3]      [,4]
-    #> [1,]  5.9577274 -5.6173983 -0.1724879 -2.540855
-    #> [2,] -2.1157532 -2.5187538  7.5005937  8.842100
-    #> [3,] -0.6037106 -0.7187030 -0.3449775 14.944022
-    #> [4,] -0.6037076 -0.7186995 -0.3449758 14.948948
+    #>            [,1]       [,2]       [,3]       [,4]
+    #> [1,]  4.5627465 -4.4456143 -0.1724879 -0.3088861
+    #> [2,] -1.7115160 -2.0375190  5.7906065  8.5373173
+    #> [3,] -0.6037106 -0.7187030 -0.3449775 14.9440222
+    #> [4,] -0.6037076 -0.7186995 -0.3449758 14.9489479
     #> 
     #> $chunk_offsets
-    #>  [1]    1210   92566  194283  315837  452402  596647  749869  910568 1075736
-    #> [10] 1237960 1389836 1534520 1667815 1786078 1891476 1994114 2093994 2191602
+    #>  [1]    1202   79967  158319  238640  338013  456525  582637  720330  863085
+    #> [10] 1000992 1127091 1242213 1339482 1428107 1514095 1597924 1680690
 
 ## EXR Implementation Notes
 

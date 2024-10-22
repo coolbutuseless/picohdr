@@ -13,8 +13,8 @@ Description: High Dynamic Range ('HDR') images support a large range in luminosi
     reading and writing two types of 'HDR' images; 'PFM' (Portable Float Map) 
     and 'OpenEXR' images. 'HDR' images can be converted to lower
     dynammic ranges (for viewing) using tone-mapping.  A number of
-    tone-mapping algorithms are included which are based on
-    Reinhard's method from "Photographic tone reproduction for digital images" 
+    tone-mapping algorithms are included which are based on 
+    Reinhard (2002) "Photographic tone reproduction for digital images" 
     <doi:10.1145/566654.566575>.
 License: MIT + file LICENSE
 Encoding: UTF-8
