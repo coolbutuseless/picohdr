@@ -27,9 +27,10 @@ calc_luminance <- function(arr) {
 #'         equally to all colour channels}
 #'   \item{\code{tm_reinhard_variant()}}{[RGB or Gray images] A combination of
 #'         the above two methods}
-#'   \item{\code{}}{}
-#'   \item{\code{}}{}
 #' }
+#' These functions are based on Reinhard (2002) 
+#' "Photographic tone reproduction for digital images" 
+#' 
 #' @inheritParams adj_clamp
 #' @examples
 #' filename <- system.file("image", "rstats.pfm.bz2", package = "picohdr")

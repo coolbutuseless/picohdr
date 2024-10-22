@@ -6,7 +6,7 @@
 \alias{picohdr-package}
 \title{picohdr: Read, Write and Manipulate High Dynamic Range Images}
 \description{
-High Dynamic Range ('HDR') images support a large range in luminosity between the lightest and darkest regions of an image. To capture this range, data in 'HDR' images is often stored as floating point numbers and in formats that capture more data and channels than standard image types. This package supports reading and writing two types of 'HDR' images; 'PFM' (Portable Float Map) and 'OpenEXR' images. 'HDR' images can be converted to lower dynammic ranges (for viewing) using tone-mapping. A number of tone-mapping algorithms are included which are based on Reinhard (2002) "Photographic tone reproduction for digital images" \doi{10.1145/566654.566575}.
+High Dynamic Range ('HDR') images support a large range in luminosity between the lightest and darkest regions of an image. To capture this range, data in 'HDR' images is often stored as floating point numbers and in formats that capture more data and channels than standard image types. This package supports reading and writing two types of 'HDR' images; 'PFM' (Portable Float Map) and 'OpenEXR' images. 'HDR' images can be converted to lower dynamic ranges (for viewing) using tone-mapping. A number of tone-mapping algorithms are included which are based on Reinhard (2002) "Photographic tone reproduction for digital images" \doi{10.1145/566654.566575}.
 }
 \seealso{
 Useful links:

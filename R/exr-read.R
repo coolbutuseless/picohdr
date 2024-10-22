@@ -111,7 +111,7 @@ decompress_zip_scanline_block <- function(scanline_block_raw,
   #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # Decompress the data
   #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  dat <- memDecompress(scanline_block_raw)
+  dat <- memDecompress(scanline_block_raw, type = 'gzip')
   
   if (isTRUE(use_c)) {
     # Undo predictor and shuffle
