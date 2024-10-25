@@ -122,8 +122,9 @@ rgb_clamped <- rgb_arr |>
   adj_clamp(lo = 0, hi = 1) |>
   adj_gamma()
 
-par(mai = c(0, 0, 0, 0))
+oldpar <- par(mai = c(0, 0, 0, 0))
 plot(as.raster(rgb_clamped))
+par(oldpar)
 ```
 
 ```{r echo=FALSE}
@@ -149,8 +150,9 @@ rgb_rescale <- rgb_arr |>
   adj_rescale(lo = 0, hi = 1) |>
   adj_gamma()
 
-par(mai = c(0, 0, 0, 0))
+oldpar <- par(mai = c(0, 0, 0, 0))
 plot(as.raster(rgb_rescale))
+par(oldpar)
 ```
 
 ```{r echo=FALSE}
@@ -178,8 +180,9 @@ rgb_rh1<- rgb_arr |>
   tm_reinhard() |>
   adj_gamma() 
 
-par(mai = c(0, 0, 0, 0))
+oldpar <- par(mai = c(0, 0, 0, 0))
 plot(as.raster(rgb_rh1))
+par(oldpar)
 ```
 
 ```{r echo=FALSE}
@@ -208,8 +211,9 @@ rgb_rh2 <- rgb_arr |>
   tm_reinhard_basic() |>
   adj_gamma() 
 
-par(mai = c(0, 0, 0, 0))
+oldpar <- par(mai = c(0, 0, 0, 0))
 plot(as.raster(rgb_rh2))
+par(oldpar)
 ```
 
 ```{r echo=FALSE}
@@ -237,8 +241,9 @@ rgb_rh3 <- rgb_arr |>
   tm_reinhard_variant() |>
   adj_gamma() 
 
-par(mai = c(0, 0, 0, 0))
+oldpar <- par(mai = c(0, 0, 0, 0))
 plot(as.raster(rgb_rh3))
+par(oldpar)
 ```
 
 ```{r echo=FALSE}
