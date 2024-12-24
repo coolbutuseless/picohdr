@@ -63,12 +63,25 @@ EXR image specification.
 
 ## Installation
 
-You can install from [GitHub](https://github.com/coolbutuseless/picohdr)
-with:
+This package can be installed from CRAN
 
 ``` r
-# install.packages('remotes')
+install.packages('picohdr')
+```
+
+You can install the latest development version from
+[GitHub](https://github.com/coolbutuseless/picohdr) with:
+
+``` r
+# install.package('remotes')
 remotes::install_github('coolbutuseless/picohdr')
+```
+
+Pre-built source/binary versions can also be installed from
+[R-universe](https://r-universe.dev)
+
+``` r
+install.packages('picohdr', repos = c('https://coolbutuseless.r-universe.dev', 'https://cloud.r-project.org'))
 ```
 
 ## PFM
